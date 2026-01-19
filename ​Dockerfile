@@ -1,0 +1,16 @@
+FROM python:3.9-slim
+
+# Tizimga FFmpeg o'rnatish
+RUN apt-get update && apt-get install -y ffmpeg
+
+# Ishchi katalogni yaratish
+WORKDIR /app
+
+# Fayllarni nusxalash
+COPY . .
+
+# Kutubxonalarni o'rnatish
+RUN pip install --no-cache-dir pyTelegramBotAPI yt-dlp
+
+# Botni ishga tushirish
+CMD ["python", "musicbot.py"]
